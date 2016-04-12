@@ -1,0 +1,16 @@
+{% extends 'admin_layout.html' %}
+{% block body %}
+<form method='POST' action='{{ url_for("register_admin") }}'>
+    {{ form.csrf_token }}
+    <table>
+        {% for field in form if field.widget.input_type != 'hidden' %}
+            <tr>
+                <td>{{ field.label }} </td><td>{{ field }}</td>
+                {% if field.errors %}
+                    <td>{{ field.errors[0] }}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+</form>
+{% endblock %}
