@@ -1,0 +1,6 @@
+dev_settings.py
+prod_settings.py
+dev.db
+prod.db
+
+*.pyc
