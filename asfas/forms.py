@@ -21,7 +21,7 @@ class AdminRegistrationForm(Form):
             raise ValidationError('This username is not available.')
 
     username = TextField('Username', [validators.DataRequired(), \
-        validators.Length(min=4, max=35), username.unique])
+        validators.Length(min=4, max=35), username_unique])
     email = EmailField('Email address', [validators.DataRequired(), validators.Email()])
     password = PasswordField('New Password', [validators.DataRequired(), \
         validators.EqualTo('confirm', message='Passwords must match.')])

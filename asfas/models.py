@@ -12,7 +12,7 @@ class User(db.Model):
     email = db.Column(db.String(128), index=True)
     admin = db.Column(db.Integer)
 
-    def __init__(self, id, username, password, email, admin=False, active=True):
+    def __init__(self, username, password, email, admin=False, active=True):
         self.username = username
         self.password = password
         self.email = email
