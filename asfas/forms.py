@@ -45,3 +45,15 @@ class LoginForm(Form):
 
     username = TextField('Username', [validators.DataRequired(), check_username])
     password = PasswordField('Password', [validators.DataRequired(), check_password])
+
+class EditAdminForm(Form):
+    class Meta:
+        model = User
+
+    def make_optional(form, field):
+        field.validators.insert(0, validators.Optional())
+
+    email = EmailField('Email address', [validators.DataRequired(), validators.Email()])
+    password = PasswordField('New Password', [validators.DataRequired(), \
+        validators.EqualTo('confirm', message='Passwords must match.')])
+    confirm = PasswordField('Repeat Password')

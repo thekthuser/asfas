@@ -3,8 +3,8 @@
 # routes.py
 
 from flask import Flask, request, render_template, url_for, redirect
-from flask.ext.login import login_user, logout_user, login_required, LoginManager
-from forms import AdminRegistrationForm, LoginForm
+from flask.ext.login import login_user, logout_user, login_required, LoginManager, current_user
+from forms import AdminRegistrationForm, LoginForm, EditAdminForm
 from asfas import app, db, login_manager, CsrfProtect, bcrypt
 from models import User
 
@@ -12,8 +12,8 @@ from models import User
 def index():
     return render_template('index.html')
 
-@login_required
 @app.route('/admin/register/', methods=['GET', 'POST'])
+@login_required
 def register_admin():
     form = AdminRegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
@@ -43,3 +43,31 @@ def logout():
 @login_manager.user_loader
 def load_user(id):
     return User.query.get(id)
+
+@app.route('/admin/edit/', methods=['GET', 'POST'])
+@login_required
+def edit_admin():
+    form = EditAdminForm()
+    form.make_optional(form.email)
+    form.make_optional(form.password)
+    if request.method == 'POST' and form.validate():
+        #return str(current_user)
+        """
+        user = User.query.filter_by(username=str(current_user)).first()
+        user.email = form.email.data
+        db.session.commit()
+        return 'success'
+        """
+        user = User.query.filter_by(username=str(current_user)).first()
+        if form.email.data and user.email != form.email.data:
+            user.email = form.email.data
+        if form.password.data and not bcrypt.check_password_hash(user.password, form.password.data):
+            pw_hash = bcrypt.generate_password_hash(form.password.data)
+            user.password = pw_hash
+        db.session.commit()
+        return render_template('index.html')
+    return render_template('admin_edit.html', form=form)
+
+
+
+
