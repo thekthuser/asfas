@@ -51,13 +51,6 @@ def edit_admin():
     form.make_optional(form.email)
     form.make_optional(form.password)
     if request.method == 'POST' and form.validate():
-        #return str(current_user)
-        """
-        user = User.query.filter_by(username=str(current_user)).first()
-        user.email = form.email.data
-        db.session.commit()
-        return 'success'
-        """
         user = User.query.filter_by(username=str(current_user)).first()
         if form.email.data and user.email != form.email.data:
             user.email = form.email.data
@@ -68,6 +61,10 @@ def edit_admin():
         return render_template('index.html')
     return render_template('admin_edit.html', form=form)
 
+@app.route('/admin/index')
+@login_required
+def admin_index():
+    return render_template('admin_index.html')
 
 
 

@@ -3,7 +3,14 @@
         <title>asfas admin</title>
     </head>
     <body>
-        <h1>asfas admin</h1>
+        <span style='border-bottom: 6px solid blue; display: block;'>
+            <a href='{{ url_for("admin_index") }}'>
+                <h1 style="display: inline;">asfas admin: </h1>
+            </a>
+            <a href='{{ url_for("logout") }}'>
+                <p style="display: inline; float: right;">Logout from {{ current_user }}</p>
+            </a>
+        </span>
         {% block body %}
         {% endblock %}
     </body>
