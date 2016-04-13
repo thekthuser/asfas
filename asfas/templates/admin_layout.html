@@ -4,12 +4,14 @@
     </head>
     <body>
         <span style='border-bottom: 6px solid blue; display: block;'>
-            <a href='{{ url_for("admin_index") }}'>
+            <a href='{{ url_for("admin_index") }}' style="text-decoration: none;">
                 <h1 style="display: inline;">asfas admin: </h1>
             </a>
+            {% if current_user.is_authenticated %}
             <a href='{{ url_for("logout") }}'>
                 <p style="display: inline; float: right;">Logout from {{ current_user }}</p>
             </a>
+            {% endif %}
         </span>
         {% block body %}
         {% endblock %}

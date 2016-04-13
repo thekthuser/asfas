@@ -23,16 +23,16 @@ def register_admin():
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        return 'User created.'
+        return redirect(url_for('admin_index'))
     return render_template('admin_register.html', form=form)
 
 @app.route('/admin/login/', methods=['GET', 'POST'])
-def login():
+def admin_login():
     form = LoginForm()
     if request.method == 'POST' and form.validate():
         user = User.query.filter_by(username=form.username.data).first()
         login_user(user)
-        return redirect(url_for('index'))
+        return redirect(url_for('admin_index'))
     return render_template('admin_login.html', form=form)
 
 @app.route('/logout/')
@@ -58,7 +58,7 @@ def edit_admin():
             pw_hash = bcrypt.generate_password_hash(form.password.data)
             user.password = pw_hash
         db.session.commit()
-        return render_template('index.html')
+        return redirect(url_for('admin_index'))
     return render_template('admin_edit.html', form=form)
 
 @app.route('/admin/index')

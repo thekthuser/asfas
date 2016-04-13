@@ -11,7 +11,8 @@
 </ul>
 <h2>Users/Admins</h2>
 <ul>
-    <li>Edit existing</li>
-    <li>Register new admin</li>
+    <li>List all users</li>
+    <li><a href="{{ url_for('edit_admin') }}">Edit existing</a></li>
+    <li><a href="{{ url_for('register_admin') }}">Register new admin</a></li>
 </ul>
 {% endblock %}
