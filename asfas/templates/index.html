@@ -1,0 +1,5 @@
+{% if current_user.is_authenticated %}
+    <p>{{ current_user.username }} is logged in.</p>
+{% else %}
+    <p>No one is logged in.</p>
+{% endif %}

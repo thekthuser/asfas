@@ -27,3 +27,21 @@ class AdminRegistrationForm(Form):
         validators.EqualTo('confirm', message='Passwords must match.')])
     confirm = PasswordField('Repeat Password')
 
+class LoginForm(Form):
+    class Meta:
+        model = User
+
+    def check_username(form, field):
+        user = User.query.filter_by(username=field.data).first()
+        if user is None:
+            raise ValidationError('Incorrect username.')
+        return True
+
+    def check_password(form, field):
+        user = User.query.filter_by(username=form.username.data).first()
+        if user and bcrypt.check_password_hash(user.password, field.data):
+            return True
+        raise ValidationError('Incorrect password.')
+
+    username = TextField('Username', [validators.DataRequired(), check_username])
+    password = PasswordField('Password', [validators.DataRequired(), check_password])
