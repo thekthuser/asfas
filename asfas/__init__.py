@@ -16,4 +16,4 @@ CsrfProtect(app)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
-import asfas.routes
+import asfas.admin_routes
