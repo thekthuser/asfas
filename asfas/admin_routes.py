@@ -6,7 +6,7 @@ from flask import Flask, request, render_template, url_for, redirect
 from flask.ext.login import login_user, logout_user, login_required, LoginManager, current_user
 from forms import AdminRegistrationForm, LoginForm, EditAdminForm
 from asfas import app, db, login_manager, CsrfProtect, bcrypt
-from models import User
+from models import User, Page
 
 @app.route('/')
 def index():
@@ -61,7 +61,7 @@ def edit_admin():
         return redirect(url_for('admin_index'))
     return render_template('admin_edit.html', form=form)
 
-@app.route('/admin/index')
+@app.route('/admin/index/')
 @login_required
 def admin_index():
     return render_template('admin_index.html')
@@ -71,4 +71,13 @@ def admin_index():
 def list_users():
     users = User.query.all()
     return render_template('admin_users.html', users=users)
+
+@app.route('/admin/page/<title>/edit/')
+@login_required
+def page_edit(title=None):
+    page = Page.query.filter_by(title=title).first()
+    if not page:
+        return redirect(url_for('admin_index'))
+    else:
+        return render_template('page_edit.html', page=page)
 

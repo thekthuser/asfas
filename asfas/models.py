@@ -33,3 +33,26 @@ class User(db.Model):
 
     def __repr__(self):
         return self.username
+
+
+class Page(db.Model):
+
+    __tablename__ = 'pages'
+    id = db.Column(db.Integer, primary_key=True, unique=True, index=True)
+    title = db.Column(db.String(64), unique=True, index=True)
+    header_image = db.Column(db.String(64))
+    content = db.Column(db.Text)
+    lower_image = db.Column(db.String(64))
+
+    def __init__(self, title, header_image=None, content=None, lower_image=None):
+        self.title = title
+        self.header_image = header_image
+        self.content = content
+        self.lower_image = lower_image
+
+    def __repr__(self):
+        return self.title
+
+
+
+
