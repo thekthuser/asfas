@@ -66,5 +66,9 @@ def edit_admin():
 def admin_index():
     return render_template('admin_index.html')
 
-
+@app.route('/admin/users/')
+@login_required
+def list_users():
+    users = User.query.all()
+    return render_template('admin_users.html', users=users)
 
