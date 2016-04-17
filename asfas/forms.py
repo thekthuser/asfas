@@ -3,11 +3,13 @@
 # forms.py
 
 from flask.ext.wtf import Form
-from wtforms import TextField, PasswordField
+from wtforms import TextField, PasswordField, StringField
 from wtforms.fields.html5 import EmailField
 from wtforms import validators, ValidationError
-from models import User
+from wtforms.widgets import TextArea
+from models import User, Page
 from asfas import bcrypt
+
 
 class AdminRegistrationForm(Form):
     class Meta:
@@ -26,6 +28,7 @@ class AdminRegistrationForm(Form):
     password = PasswordField('New Password', [validators.DataRequired(), \
         validators.EqualTo('confirm', message='Passwords must match.')])
     confirm = PasswordField('Repeat Password')
+
 
 class LoginForm(Form):
     class Meta:
@@ -46,6 +49,7 @@ class LoginForm(Form):
     username = TextField('Username', [validators.DataRequired(), check_username])
     password = PasswordField('Password', [validators.DataRequired(), check_password])
 
+
 class EditAdminForm(Form):
     class Meta:
         model = User
@@ -57,3 +61,15 @@ class EditAdminForm(Form):
     password = PasswordField('New Password', [validators.DataRequired(), \
         validators.EqualTo('confirm', message='Passwords must match.')])
     confirm = PasswordField('Repeat Password')
+
+
+class EditPageForm(Form):
+    class Meta:
+        model = Page
+
+    def make_optional(form, field):
+        field.validators.insert(0, validators.Optional())
+
+    header_image = StringField('Header Image', [validators.DataRequired()])
+    content = StringField('Page Content', widget=TextArea())
+    lower_image = StringField('Lower Image', [validators.DataRequired()])

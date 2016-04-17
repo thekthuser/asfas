@@ -4,7 +4,7 @@
 
 from flask import Flask, request, render_template, url_for, redirect
 from flask.ext.login import login_user, logout_user, login_required, LoginManager, current_user
-from forms import AdminRegistrationForm, LoginForm, EditAdminForm
+from forms import AdminRegistrationForm, LoginForm, EditAdminForm, EditPageForm
 from asfas import app, db, login_manager, CsrfProtect, bcrypt
 from models import User, Page
 
@@ -72,14 +72,28 @@ def list_users():
     users = User.query.all()
     return render_template('admin_users.html', users=users)
 
-@app.route('/admin/page/<title>/edit/')
+@app.route('/admin/page/<title>/edit/', methods=['GET', 'POST'])
 @login_required
 def page_edit(title=None):
     page = Page.query.filter_by(title=title).first()
     if not page:
         return redirect(url_for('admin_index'))
-    else:
-        return render_template('admin_page_edit.html', page=page)
+    form = EditPageForm(obj=page)
+    form.make_optional(form.header_image)
+    form.make_optional(form.content)
+    form.make_optional(form.lower_image)
+    if request.method == 'POST' and form.validate():
+        if form.header_image.data and page.header_image != 'N/A':
+            page.header_image = form.header_image.data
+        if form.content.data and page.content != 'N/A':
+            page.content = form.content.data
+        if form.lower_image.data and page.lower_image != 'N/A':
+            page.lower_image = form.lower_image.data
+        db.session.commit()
+        return redirect(url_for('page_view', title=title))
+    return render_template('admin_page_edit.html', form=form, page=page)
+
+
 
 @app.route('/admin/page/<title>/view/')
 @login_required

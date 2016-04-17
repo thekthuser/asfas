@@ -1,4 +1,18 @@
 {% extends 'admin_layout.html' %}
 {% block body %}
-    {{ page.title }}
+{{ page.title }}
+<form method='POST' action='{{ url_for("page_edit", title=page.title) }}'>
+    {{ form.csrf_token }}
+    <table>
+        {% for field in form if field.widget.input_type != 'hidden' and field.data != 'N/A' %}
+            <tr>
+                <td>{{ field.label }}</td><td>{{ field }}</td>
+                {% if field.errors %}
+                    <td>{{ field.errors[0] }} </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    <input type='submit' value='Submit' />
+</form>
 {% endblock %}
