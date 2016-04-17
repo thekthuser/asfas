@@ -3,7 +3,7 @@
 # forms.py
 
 from flask.ext.wtf import Form
-from wtforms import TextField, PasswordField, StringField
+from wtforms import PasswordField, StringField
 from wtforms.fields.html5 import EmailField
 from wtforms import validators, ValidationError
 from wtforms.widgets import TextArea
@@ -22,7 +22,7 @@ class AdminRegistrationForm(Form):
         else:
             raise ValidationError('This username is not available.')
 
-    username = TextField('Username', [validators.DataRequired(), \
+    username = StringField('Username', [validators.DataRequired(), \
         validators.Length(min=4, max=35), username_unique])
     email = EmailField('Email address', [validators.DataRequired(), validators.Email()])
     password = PasswordField('New Password', [validators.DataRequired(), \
@@ -46,7 +46,7 @@ class LoginForm(Form):
             return True
         raise ValidationError('Incorrect password.')
 
-    username = TextField('Username', [validators.DataRequired(), check_username])
+    username = StringField('Username', [validators.DataRequired(), check_username])
     password = PasswordField('Password', [validators.DataRequired(), check_password])
 
 
