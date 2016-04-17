@@ -79,5 +79,13 @@ def page_edit(title=None):
     if not page:
         return redirect(url_for('admin_index'))
     else:
-        return render_template('page_edit.html', page=page)
+        return render_template('admin_page_edit.html', page=page)
 
+@app.route('/admin/page/<title>/view/')
+@login_required
+def page_view(title=None):
+    page = Page.query.filter_by(title=title).first()
+    if not page:
+        return redirect(url_for('admin_index'))
+    else:
+        return render_template('admin_page_view.html', page=page)

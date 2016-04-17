@@ -1,0 +1,15 @@
+{% extends 'admin_layout.html' %}
+{% block body %}
+    {{ page.title }}
+    <!-- compare to 'N/A' because  not all pages have all types, but 
+    ones that do are allowed to be None -->
+    {% if page.header_image != 'N/A' %}
+        <p>has header image</p>
+    {% endif %}
+    {% if page.content != 'N/A' %}
+        <p>has content</p>
+    {% endif %}
+    {% if page.lower_image != 'N/A' %}
+        <p>has lower image</p>
+    {% endif %}
+{% endblock %}
