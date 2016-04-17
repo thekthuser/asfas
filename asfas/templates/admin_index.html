@@ -2,12 +2,12 @@
 {% block body %}
 <h2>Editable Pages</h2>
 <ul>
-    <li><a href='{{ url_for("page_edit", title="home") }}'>Home</a></li>
-    <li><a href='{{ url_for("page_edit", title="who") }}'>Who?</a></li>
-    <li><a href='{{ url_for("page_edit", title="therapy") }}'>Therapy</a></li>
-    <li><a href='{{ url_for("page_edit", title="music") }}'>Music</a></li>
-    <li><a href='{{ url_for("page_edit", title="friends") }}'>Friends</a></li>
-    <li><a href='{{ url_for("page_edit", title="contact") }}'>Contact</a></li>
+    <li><a href='{{ url_for("page_view", title="home") }}'>Home</a></li>
+    <li><a href='{{ url_for("page_view", title="who") }}'>Who?</a></li>
+    <li><a href='{{ url_for("page_view", title="therapy") }}'>Therapy</a></li>
+    <li><a href='{{ url_for("page_view", title="music") }}'>Music</a></li>
+    <li><a href='{{ url_for("page_view", title="friends") }}'>Friends</a></li>
+    <li><a href='{{ url_for("page_view", title="contact") }}'>Contact</a></li>
 </ul>
 <h2>Users/Admins</h2>
 <ul>
