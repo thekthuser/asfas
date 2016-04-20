@@ -1,18 +1,21 @@
 {% extends 'admin_layout.html' %}
 {% block body %}
-    {{ page.title }}
+    <a href='{{ url_for("page_edit", title=page.title) }}'>Edit {{ page.title }} page</a>
+    <div style="clear: both"></div>
     <!-- compare to 'N/A' because  not all pages have all types, but 
     ones that do are allowed to be None -->
     {% if page.header_image and page.header_image != 'N/A' %}
-        <p>has header image</p>
+        <p>Header Image:</p>
         <img src='{{ url_for("static", filename= "images/" + page.header_image) }}'>
-        {# {{ url_for('send_image', filename=page.header_image) }} #}
-        {# <img src='static/images/default_kitty.jpg' /> #}
+        <div style="clear: both"></div>
     {% endif %}
     {% if page.content != 'N/A' %}
-        <p>has content</p>
+        <p>Main content:</p>
+        {{ page.content }}
+        <div style="clear: both"></div>
     {% endif %}
     {% if page.lower_image != 'N/A' %}
-        <p>has lower image</p>
+        <p>Lower Image:</p>
+        <img src='{{ url_for("static", filename= "images/" + page.lower_image) }}'>
     {% endif %}
 {% endblock %}

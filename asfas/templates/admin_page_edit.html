@@ -1,6 +1,6 @@
 {% extends 'admin_layout.html' %}
 {% block body %}
-{{ page.title }}
+<a href='{{ url_for("page_view", title=page.title) }}'>View {{ page.title }} page</a>
 <form method='POST' action='{{ url_for("page_edit", title=page.title) }}' 
     enctype='multipart/form-data'>
     {{ form.csrf_token }}
