@@ -11,6 +11,9 @@
                 {% if field.errors %}
                     <td>{{ field.errors[0] }} </td>
                 {% endif %}
+                {% if field.name == 'header_image' or field.name == 'lower_image' %}
+                <td>Current image: {{ field.data }}</td>
+                {% endif %}
             </tr>
         {% endfor %}
     </table>
