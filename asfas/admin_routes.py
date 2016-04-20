@@ -63,7 +63,7 @@ def edit_admin():
         return redirect(url_for('admin_index'))
     return render_template('admin_edit.html', form=form)
 
-@app.route('/admin/index/')
+@app.route('/admin/')
 @login_required
 def admin_index():
     return render_template('admin_index.html')
