@@ -3,4 +3,4 @@ prod_settings.py
 *.db
 *.pyc
 *.swp
-images/*
+images/
