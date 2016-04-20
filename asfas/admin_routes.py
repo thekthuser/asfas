@@ -5,8 +5,10 @@
 from flask import Flask, request, render_template, url_for, redirect
 from flask.ext.login import login_user, logout_user, login_required, LoginManager, current_user
 from forms import AdminRegistrationForm, LoginForm, EditAdminForm, EditPageForm
-from asfas import app, db, login_manager, CsrfProtect, bcrypt
+from werkzeug import secure_filename
+from asfas import app, db, login_manager, CsrfProtect, bcrypt, images
 from models import User, Page
+import os
 
 @app.route('/')
 def index():
@@ -84,16 +86,29 @@ def page_edit(title=None):
     form.make_optional(form.lower_image)
     if request.method == 'POST' and form.validate():
         if form.header_image.data and page.header_image != 'N/A':
-            page.header_image = form.header_image.data
+            #page.header_image = form.header_image.data
+            """
+            page.header_image = secure_filename(form.header_image.data.filename)
+            #save to app.config['UPLOADED_IMAGES_DEST']
+            form.header_image.data.save('asfas/images/' + page.header_image)
+            """
+            header_image = request.files['header_image']
+            page.header_image = secure_filename(form.header_image.data.filename)
+            header_image.save(os.path.join(app.config['UPLOADED_IMAGES_DEST'], page.header_image))
+            """
+            header_image = images.save(request.files['header_image'])
+            #rec = Image(filename=header_image, user = page.id)
+            #rec.store()
+            """
         if form.content.data and page.content != 'N/A':
             page.content = form.content.data
         if form.lower_image.data and page.lower_image != 'N/A':
-            page.lower_image = form.lower_image.data
+            lower_image = request.files['lower_image']
+            page.lower_image = secure_filename(form.lower_image.data.filename)
+            lower_image.save(os.path.join(app.config['UPLOADED_IMAGES_DEST'], page.lower_image))
         db.session.commit()
         return redirect(url_for('page_view', title=title))
     return render_template('admin_page_edit.html', form=form, page=page)
-
-
 
 @app.route('/admin/page/<title>/view/')
 @login_required

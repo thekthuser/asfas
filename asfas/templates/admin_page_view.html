@@ -3,8 +3,11 @@
     {{ page.title }}
     <!-- compare to 'N/A' because  not all pages have all types, but 
     ones that do are allowed to be None -->
-    {% if page.header_image != 'N/A' %}
+    {% if page.header_image and page.header_image != 'N/A' %}
         <p>has header image</p>
+        <img src='{{ url_for("static", filename= "images/" + page.header_image) }}'>
+        {# {{ url_for('send_image', filename=page.header_image) }} #}
+        {# <img src='static/images/default_kitty.jpg' /> #}
     {% endif %}
     {% if page.content != 'N/A' %}
         <p>has content</p>

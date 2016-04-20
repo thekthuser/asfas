@@ -7,8 +7,12 @@ from wtforms import PasswordField, StringField
 from wtforms.fields.html5 import EmailField
 from wtforms import validators, ValidationError
 from wtforms.widgets import TextArea
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from flask.ext.uploads import UploadSet, IMAGES
 from models import User, Page
-from asfas import bcrypt
+from asfas import bcrypt, images
+
+#images = UploadSet('images', IMAGES)
 
 
 class AdminRegistrationForm(Form):
@@ -70,6 +74,6 @@ class EditPageForm(Form):
     def make_optional(form, field):
         field.validators.insert(0, validators.Optional())
 
-    header_image = StringField('Header Image', [validators.DataRequired()])
+    header_image = FileField('Header Image', [FileAllowed(images)])
     content = StringField('Page Content', widget=TextArea())
-    lower_image = StringField('Lower Image', [validators.DataRequired()])
+    lower_image = FileField('Lower Image', [FileAllowed(images)])
