@@ -1,0 +1,52 @@
+body {
+    background: #E1F4Fb;
+    color: #005996;
+    font-family: 'Roboto', sans-serif;
+}
+
+#header {
+    border-bottom: 6px solid #005996;
+    display: block;
+    font-size: 2em;
+    padding-left: 1em;
+    padding-right: .5em;
+    line-height: 100%;
+    text-align: bottom;
+}
+
+#header h1 {
+    display: inline;
+    text-align: left;
+}
+
+#header h1 a {
+    text-decoration: none;
+}
+
+#header p {
+    display: inline;
+    float: right;
+    font-size: .6em;
+}
+
+a {
+    color: #005996;
+}
+
+#main {
+    padding: 1em;
+}
+
+#main h2 {
+    font-size: 1.5em;
+}
+
+#main li {
+    font-size: 1.2em;
+    padding-left: 1.5em;
+    padding-top: .3em;
+}
+
+#main ul {
+    padding-bottom: 1em;
+}

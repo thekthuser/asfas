@@ -1,19 +1,29 @@
 <html>
     <head>
         <title>asfas admin</title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' 
+            type='text/css'>
+        <link rel='stylesheet' href='{{ url_for("static", filename="css/reset.css") }}'>
+        <link rel='stylesheet' href='{{ url_for("static", filename="css/admin.css") }}'>
     </head>
     <body>
-        <span style='border-bottom: 6px solid blue; display: block;'>
-            <a href='{{ url_for("admin_index") }}' style="text-decoration: none;">
-                <h1 style="display: inline;">asfas admin: </h1>
-            </a>
+        <span id="header">
+            <h1>
+                <a href='{{ url_for("admin_index") }}'>
+                    asfas admin: 
+                </a>
+            </h1>
             {% if current_user.is_authenticated %}
-            <a href='{{ url_for("logout") }}'>
-                <p style="display: inline; float: right;">Logout from {{ current_user }}</p>
-            </a>
+            <p>
+                <a href='{{ url_for("logout") }}'>
+                    Logout from {{ current_user }}
+                </a>
+            </p>
             {% endif %}
         </span>
-        {% block body %}
-        {% endblock %}
+        <div id="main">
+            {% block body %}
+            {% endblock %}
+        </div>
     </body>
 </html>
