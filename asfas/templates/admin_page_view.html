@@ -1,25 +1,30 @@
 {% extends 'admin_layout.html' %}
 {% block body %}
-    <a href='{{ url_for("page_edit", title=page.title) }}'>Edit {{ page.title }} page</a>
-    <div style="clear: both"></div>
+    <span class="page-link">
+        <a href='{{ url_for("page_edit", title=page.title) }}'>
+            Edit {{ page.title }} page
+        </a>
+    </span>
+    <div class="clear"></div>
     <!-- compare to 'N/A' because  not all pages have all types, but 
     ones that do are allowed to be None -->
     {% if page.header_image != 'N/A' %}
         <p>Header Image:</p>
         {% if page.header_image %}
-            <img src='{{ url_for("static", filename= "images/" + page.header_image) }}'>
+            <img class="indent-left fit-image" src='{{ url_for("static", filename= "images/" + page.header_image) }}'>
         {% else %}
-            <p>None</p>
+            <p class="indent-left">None</p>
             {% endif %}
-        <div style="clear: both"></div>
+        <div class="clear"></div>
     {% endif %}
     {% if page.content != 'N/A' %}
         <p>Main content:</p>
-        {{ page.content }}
-        <div style="clear: both"></div>
+        <span class="indent-left">{{ page.content }}</span>
+        <div class="clear"></div>
     {% endif %}
     {% if page.lower_image != 'N/A' %}
         <p>Lower Image:</p>
-        <img src='{{ url_for("static", filename= "images/" + page.lower_image) }}'>
+        <img class="indent-left fit-image" 
+            src='{{ url_for("static", filename= "images/" + page.lower_image) }}'>
     {% endif %}
 {% endblock %}
