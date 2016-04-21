@@ -4,9 +4,13 @@
     <div style="clear: both"></div>
     <!-- compare to 'N/A' because  not all pages have all types, but 
     ones that do are allowed to be None -->
-    {% if page.header_image and page.header_image != 'N/A' %}
+    {% if page.header_image != 'N/A' %}
         <p>Header Image:</p>
-        <img src='{{ url_for("static", filename= "images/" + page.header_image) }}'>
+        {% if page.header_image %}
+            <img src='{{ url_for("static", filename= "images/" + page.header_image) }}'>
+        {% else %}
+            <p>None</p>
+            {% endif %}
         <div style="clear: both"></div>
     {% endif %}
     {% if page.content != 'N/A' %}
