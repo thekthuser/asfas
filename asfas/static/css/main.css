@@ -1,0 +1,29 @@
+#nav-title {
+    font-family: 'Amatic SC', cursive;
+    text-align: center;
+    font-size: 3em;
+    height: auto;
+    line-height: 1em;
+    padding-left: 1em;
+}
+
+.navbar-links {
+    float: right;
+    font-size: 1.3em;
+    font-weight: 700;
+    padding-top: .6em;
+}
+
+.clear {
+    clear: both;
+}
+
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    background: #FFFFFF;
+}
+
+.navbar {
+    background: #FFFFFF;
+}
