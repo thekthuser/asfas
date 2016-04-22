@@ -26,4 +26,19 @@ body {
 
 .navbar {
     background: #FFFFFF;
+    border-width: 0px;
+    margin: 0px;
+}
+
+#header-image {
+    max-width: 100%;
+    border-top-width: 1em;
+    border-style: solid;
+    border-color: #E9EAEE;
+}
+
+#main {
+    border-bottom-width: 1em;
+    border-style: solid;
+    border-color: #E9EAEE;
 }

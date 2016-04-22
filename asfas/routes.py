@@ -6,9 +6,10 @@ from flask import Flask, request, render_template, url_for, redirect
 from flask.ext.login import login_user, logout_user, login_required, LoginManager, current_user
 from forms import AdminRegistrationForm, LoginForm, EditAdminForm
 from asfas import app, db, login_manager, CsrfProtect, bcrypt
-from models import User
+from models import User, Page
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    page = Page.query.filter_by(title='home').first()
+    return render_template('page.html', page=page)
 
