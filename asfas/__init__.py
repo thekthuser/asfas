@@ -27,3 +27,4 @@ images = UploadSet('images', IMAGES)
 configure_uploads(app, images)
 
 import asfas.admin_routes
+import asfas.routes

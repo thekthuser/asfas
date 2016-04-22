@@ -10,9 +10,6 @@ from asfas import app, db, login_manager, CsrfProtect, bcrypt, images
 from models import User, Page
 import os
 
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 @app.route('/admin/register/', methods=['GET', 'POST'])
 @login_required

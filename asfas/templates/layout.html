@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>a song for all seasons</title>
+        <link href='http://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext' 
+            rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Amatic+SC:700' rel='stylesheet' 
+            type='text/css'>
+        <link rel='stylesheet' href='{{ url_for("static", filename="css/reset.css") }}'>
+        <script
+            src="https://code.jquery.com/jquery-2.2.3.min.js"
+            integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet" 
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+            integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" 
+            crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" 
+            crossorigin="anonymous"></script>
+        <link rel='stylesheet' href='{{ url_for("static", filename="css/main.css") }}'>
+    </head>
+    <body>
+        <div id="header">
+            <nav class = "navbar navbar-default" role = "navigation">
+
+                <div class = "navbar-header">
+                    <button type = "button" class = "navbar-toggle" 
+                        data-toggle = "collapse" data-target = "#example-navbar-collapse">
+                        <span class = "sr-only">Toggle navigation</span>
+                        <span class = "icon-bar"></span>
+                        <span class = "icon-bar"></span>
+                        <span class = "icon-bar"></span>
+                    </button>
+
+                    <a class = "navbar-brand" href = "#" style="font-family: Amatic SC;">
+                        A SONG FOR ALL SEASONS<br />
+                    </a>
+                </div>
+
+                    <div class = "collapse navbar-collapse" id = "example-navbar-collapse" style="float: right;">
+
+                        <ul class = "nav navbar-nav">
+                            <li><a href = "#">Home</a></li>
+                            <li><a href = "#">Who is Bones?</a></li>
+                            <li><a href = "#">Music Therapy</a></li>
+                            <li><a href = "#">Music</a></li>
+                            <li><a href = "#">Friends</a></li>
+                            <li><a href = "#">Contact</a></li>
+                        </ul>
+                </div>
+
+            </nav>
+        </div>
+        <div id="main">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
