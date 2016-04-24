@@ -1,5 +1,29 @@
 {% extends 'admin_layout.html' %}
 {% block body %}
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='wysiwyg/bootstrap/js/bootstrap.min.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='wysiwyg/bootstrap/css/bootstrap.min.css') }}"></link>
+<link rel="stylesheet" href="{{ url_for('static', filename='wysiwyg/bootstrap/css/bootstrap-responsive.min.css') }}"></link>
+<link rel="stylesheet" href="{{ url_for('static', filename='wysiwyg/bootstrap-wysihtml5.css') }}"></link>
+<script type="text/javascript" src="{{ url_for('static', filename='wysiwyg/wysihtml5-master/parser_rules/advanced.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='wysiwyg/wysihtml5-master/dist/wysihtml5-0.3.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='wysiwyg/bootstrap-wysihtml5.js') }}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        //$('#content').wysihtml5();
+            /**
+        var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
+            toolbar:      "wysihtml5-toolbar", // id of toolbar element
+            parserRules:  'wysihtml5ParserRules' // defined in parser rules set 
+        });
+        **/
+        //$('#content').addClass('textarea')
+        $('#content').wysihtml5();
+        //$('.textarea').wysihtml5();
+    });
+</script>
+
 <span class="page-link">
     <a href='{{ url_for("page_view", title=page.title) }}'>View {{ page.title }} page</a>
 </span>

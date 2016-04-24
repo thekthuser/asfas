@@ -12,6 +12,8 @@ from flask.ext.uploads import UploadSet, IMAGES
 from models import User, Page
 from asfas import bcrypt, images
 
+from flask_wysiwyg.wysiwyg import WysiwygField
+
 #images = UploadSet('images', IMAGES)
 
 
@@ -75,5 +77,7 @@ class EditPageForm(Form):
         field.validators.insert(0, validators.Optional())
 
     header_image = FileField('Header Image', [FileAllowed(images)])
-    content = StringField('Page Content', widget=TextArea())
+    #content = StringField('Page Content', widget=TextArea())
+    #content = WysiwygField('wysihtml5-textarea')#'content')
+    content = StringField('wysihtml5-textarea', widget=TextArea())
     lower_image = FileField('Lower Image', [FileAllowed(images)])
