@@ -79,5 +79,5 @@ class EditPageForm(Form):
     header_image = FileField('Header Image', [FileAllowed(images)])
     #content = StringField('Page Content', widget=TextArea())
     #content = WysiwygField('wysihtml5-textarea')#'content')
-    content = StringField('wysihtml5-textarea', widget=TextArea())
+    content = StringField('content', widget=TextArea())
     lower_image = FileField('Lower Image', [FileAllowed(images)])
