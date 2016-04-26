@@ -1,5 +1,6 @@
 {% extends 'admin_layout.html' %}
 {% block body %}
+<!--
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='wysiwyg/bootstrap/js/bootstrap.min.js') }}"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='wysiwyg/bootstrap/css/bootstrap.min.css') }}"></link>
@@ -8,6 +9,18 @@
 <script type="text/javascript" src="{{ url_for('static', filename='wysiwyg/wysihtml5-master/parser_rules/advanced.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='wysiwyg/wysihtml5-master/dist/wysihtml5-0.3.0.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='wysiwyg/bootstrap-wysihtml5.js') }}"></script>
+-->
+<link rel="stylesheet" href="{{ url_for('static', filename='wysiwyg/bootstrap-wysiwyg-master/external/google-code-prettify/prettify.css') }}">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='wysiwyg/bootstrap-wysiwyg-master/external/jquery.hotkeys.js') }}"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='wysiwyg/bootstrap-wysiwyg-master/external/google-code-prettify/prettify.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='wysiwyg/bootstrap-wysiwyg-master/bootstrap-wysiwyg.js') }}"></script>
+
+
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -19,7 +32,8 @@
         });
         **/
         //$('#content').addClass('textarea')
-        $('#content').wysihtml5();
+        //$('#content').wysihtml5();
+        $('#content').wysiwyg();
         //$('.textarea').wysihtml5();
     });
 </script>
@@ -33,7 +47,29 @@
     <table class="edit-form">
         {% for field in form if field.widget.input_type != 'hidden' and field.data != 'N/A' %}
             <tr>
-                <td>{{ field.label }}</td><td>{{ field }}</td>
+                <td>{{ field.label }}</td>
+                
+                
+                
+                {% if field.name == 'content' %}
+                <td>
+                    <div class="btn-group">
+                    <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>
+                    <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>
+                    <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="icon-strikethrough"></i></a>
+                    <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
+                    </div>
+                    <div>
+                        {{ field }}
+                    </div>
+                </td>
+                {% else %}
+                <td>{{ field }}</td>
+                {% endif %}
+
+
+
+
                 {% if field.errors %}
                     <td>{{ field.errors[0] }} </td>
                 {% endif %}
