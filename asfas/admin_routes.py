@@ -115,3 +115,7 @@ def page_view(title=None):
         return redirect(url_for('admin_index'))
     else:
         return render_template('admin_page_view.html', page=page)
+
+@app.route('/asdf/')
+def asdf():
+    return 'asdf'
