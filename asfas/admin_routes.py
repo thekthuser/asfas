@@ -6,7 +6,7 @@ from flask import Flask, request, render_template, url_for, redirect
 from flask.ext.login import login_user, logout_user, login_required, LoginManager, current_user
 from forms import AdminRegistrationForm, LoginForm, EditAdminForm, EditPageForm
 from werkzeug import secure_filename
-from asfas import app, db, login_manager, CsrfProtect, bcrypt, images
+from asfas import app, db, login_manager, CsrfProtect, bcrypt, images, csrf
 from models import User, Page
 import os
 
@@ -116,6 +116,32 @@ def page_view(title=None):
     else:
         return render_template('admin_page_view.html', page=page)
 
+#filebrowserImageBrowseUrl
 @app.route('/asdf/')
 def asdf():
     return 'asdf'
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in app.config['UPLOADED_IMAGES_ALLOW']
+
+#filebrowserImageUploadUrl
+@csrf.exempt
+@app.route('/admin/ImageUpload/', methods=['GET', 'POST']) #don't need 'GET'?
+@login_required
+def qwer():
+    if request.method == 'POST':
+        upload = request.files['upload']
+        if upload and allowed_file(upload.filename):
+            upload_filename = secure_filename(upload.filename)
+            upload.save(os.path.join(app.config['UPLOADED_WYSIWYG_IMAGES_DEST'], upload_filename))
+            return upload.filename + ' saved.'
+    return 'File not saved.'
+
+@app.route('/abc/')
+def abc():
+    return 'abc'
+
+@app.route('/def/')
+def defg():
+    return 'def'

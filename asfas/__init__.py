@@ -20,7 +20,7 @@ else:
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-CsrfProtect(app)
+csrf = CsrfProtect(app)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 images = UploadSet('images', IMAGES)

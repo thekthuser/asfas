@@ -4,3 +4,4 @@ prod_settings.py
 *.pyc
 *.swp
 images/
+wysiwyg_images/
