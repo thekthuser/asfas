@@ -117,9 +117,11 @@ def page_view(title=None):
         return render_template('admin_page_view.html', page=page)
 
 #filebrowserImageBrowseUrl
-@app.route('/asdf/')
-def asdf():
-    return 'asdf'
+@app.route('/admin/ImageBrowser/')
+def ImageBrowser():
+    callback = request.args['CKEditorFuncNum']
+    files = os.listdir(os.path.join(app.config['UPLOADED_WYSIWYG_IMAGES_DEST']))
+    return render_template('admin_image_browser.html', callback=callback, files=files)
 
 
 def allowed_file(filename):
@@ -129,7 +131,7 @@ def allowed_file(filename):
 @csrf.exempt
 @app.route('/admin/ImageUpload/', methods=['GET', 'POST']) #don't need 'GET'?
 @login_required
-def qwer():
+def ImageUpload():
     if request.method == 'POST':
         upload = request.files['upload']
         if upload and allowed_file(upload.filename):
@@ -137,11 +139,3 @@ def qwer():
             upload.save(os.path.join(app.config['UPLOADED_WYSIWYG_IMAGES_DEST'], upload_filename))
             return upload.filename + ' saved.'
     return 'File not saved.'
-
-@app.route('/abc/')
-def abc():
-    return 'abc'
-
-@app.route('/def/')
-def defg():
-    return 'def'

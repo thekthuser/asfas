@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Image Browser</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+                $('.image').click(function() {
+                    var filename = $(this).attr('filename');
+                    window.opener.CKEDITOR.tools.callFunction({{ callback }},
+                        '/static/wysiwyg_images/' + filename);
+                    window.close();
+                });
+        });
+    </script>
+    </head>
+    <body style="background: #E1F4Fb; color: #005996;">
+    <div style="text-align: center;">Choose an image:</div><br />
+    <div style="text-align: center;">
+        {% for file in files %}
+            <div class="image" filename="{{ file }}" style="display: inline;">
+                <img src="{{ url_for('static', filename='wysiwyg_images/' + file) }}" 
+                    style="max-width: 300px;" />
+            </div>
+            {% if loop.index is divisibleby(5) %}
+                <br />
+            {% endif %}
+        {% endfor %}
+    </div>
+    </body>
+</html>

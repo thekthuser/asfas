@@ -31,4 +31,5 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Dialog windows are also simplified.
 	config.removeDialogTabs = 'link:advanced';
+    config.image_previewText = CKEDITOR.tools.repeat( '___ ', 1 );
 };
