@@ -11,20 +11,20 @@
     {% if page.header_image != 'N/A' %}
         <p>Header Image:</p>
         {% if page.header_image %}
-            <img class="indent-left fit-image" src='{{ url_for("static", filename= "images/" + page.header_image) }}'>
+            <img class="indent fit-image" src='{{ url_for("static", filename= "images/" + page.header_image) }}'>
         {% else %}
-            <p class="indent-left">None</p>
+            <p class="indent">None</p>
             {% endif %}
         <div class="clear"></div>
     {% endif %}
     {% if page.content != 'N/A' %}
         <p>Main content:</p>
-        <span class="indent-left">{{ page.content }}</span>
+        <div class="indent">{{ page.content|safe }}</div>
         <div class="clear"></div>
     {% endif %}
     {% if page.lower_image != 'N/A' %}
         <p>Lower Image:</p>
-        <img class="indent-left fit-image" 
+        <img class="indent fit-image" 
             src='{{ url_for("static", filename= "images/" + page.lower_image) }}'>
     {% endif %}
 {% endblock %}

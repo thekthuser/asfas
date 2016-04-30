@@ -61,8 +61,10 @@ a {
     max-height: 75%;
 }
 
-.indent-left {
+.indent {
     padding-left: 2em;
+    padding-top: 2em;
+    padding-bottom: 2em;
 }
 
 .page-link {
