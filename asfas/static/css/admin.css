@@ -75,4 +75,5 @@ a {
 
 .edit-form td {
     padding-bottom: 1em;
+    vertical-align: top;
 }
