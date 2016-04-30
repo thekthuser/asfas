@@ -32,9 +32,6 @@ body {
 
 #header-image {
     max-width: 100%;
-    border-top-width: 1em;
-    border-style: solid;
-    border-color: #E9EAEE;
     overflow: hidden;
     text-align: center;
 }
@@ -49,4 +46,18 @@ body {
     border-bottom-width: 1em;
     border-style: solid;
     border-color: #E9EAEE;
+}
+
+#backdrop {
+    border-top-width: 1em;
+    border-style: solid;
+    border-color: #E9EAEE;
+    background: #FAFAFA;
+}
+
+#content {
+    text-align: left;
+    padding: 3em 15% 3em 15%;
+    font-weight: 700;
+    font-size: 1.3em;
 }

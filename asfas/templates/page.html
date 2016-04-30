@@ -1,8 +1,13 @@
 {% extends 'layout.html' %}
 {% block body %}
-<div>
+<div id="backdrop">
     <div id="header-image">
         <img src='{{ url_for("static", filename="images/" + page.header_image) }}'>
     </div>
+    {% if page.content != 'N/A' %}
+        <div id="content">
+            {{ page.content|safe }}
+        </div>
+        {% endif %}
 </div>
 {% endblock %}
