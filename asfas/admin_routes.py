@@ -118,6 +118,7 @@ def page_view(title=None):
 
 #filebrowserImageBrowseUrl
 @app.route('/admin/ImageBrowser/')
+@login_required
 def ImageBrowser():
     callback = request.args['CKEditorFuncNum']
     files = os.listdir(os.path.join(app.config['UPLOADED_WYSIWYG_IMAGES_DEST']))
