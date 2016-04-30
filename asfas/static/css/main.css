@@ -35,6 +35,14 @@ body {
     border-top-width: 1em;
     border-style: solid;
     border-color: #E9EAEE;
+    overflow: hidden;
+    text-align: center;
+}
+
+#header-image img {
+    position: relative;
+    left: 100%;
+    margin-left: -200%;
 }
 
 #main {

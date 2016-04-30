@@ -40,8 +40,10 @@
                 <div class = "collapse navbar-collapse navbar-links" id = "example-navbar-collapse">
 
                         <ul class = "nav navbar-nav">
-                            <li><a href = "#">Home</a></li>
-                            <li><a href = "#">Who is Bones?</a></li>
+                            <li><a href = "{{ url_for('index') }}">Home</a></li>
+                            <li>
+                                <a href = "{{ url_for('page', title='who') }}">Who is Bones?</a>
+                            </li>
                             <li><a href = "#">Music Therapy</a></li>
                             <li><a href = "#">Music</a></li>
                             <li><a href = "#">Friends</a></li>

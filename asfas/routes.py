@@ -13,3 +13,11 @@ def index():
     page = Page.query.filter_by(title='home').first()
     return render_template('page.html', page=page)
 
+@app.route('/page/<title>/')
+def page(title=None):
+    if title == None:
+        return redirect(url_for('index'))
+    page = Page.query.filter_by(title=title).first()
+    return render_template('page.html', page=page)
+
+
