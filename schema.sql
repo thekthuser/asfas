@@ -1,1 +1,2 @@
 CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY NOT NULL UNIQUE, username TEXT NOT NULL UNIQUE, password TEXT, email TEXT, admin INTEGER)
+CREATE TABLE IF NOT EXISTS pages(id INTEGER PRIMARY KEY NOT NULL UNIQUE, header_image TEXT, content TEXT, lower_image TEXT, title TEXT, display_title TEXT)
