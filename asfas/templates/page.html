@@ -4,6 +4,12 @@
     <div id="header-image">
         <img src='{{ url_for("static", filename="images/" + page.header_image) }}'>
     </div>
+    {% if page.display_title != 'N/A' %}
+        <div id="title">
+            {{ page.display_title }}
+        <hr />
+        </div>
+    {% endif %}
     {% if page.content != 'N/A' %}
         <div id="content">
             {{ page.content|safe }}

@@ -17,9 +17,14 @@
             {% endif %}
         <div class="clear"></div>
     {% endif %}
+    {% if page.display_title != 'N/A' %}
+        <p>Display Title</p>
+        <div class="indent">{{ page.display_title }}</div>
+        <div class="clear"></div>
+    {% endif %}
     {% if page.content != 'N/A' %}
         <p>Main content:</p>
-        <div class="indent">{{ page.content|safe }}</div>
+        <div class="indent border">{{ page.content|safe }}</div>
         <div class="clear"></div>
     {% endif %}
     {% if page.lower_image != 'N/A' %}

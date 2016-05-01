@@ -77,3 +77,7 @@ a {
     padding-bottom: 1em;
     vertical-align: top;
 }
+
+.border {
+    border: 5px solid #005996;
+}

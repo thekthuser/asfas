@@ -79,24 +79,16 @@ def page_edit(title=None):
         return redirect(url_for('admin_index'))
     form = EditPageForm(obj=page)
     form.make_optional(form.header_image)
+    form.make_optional(form.display_title)
     form.make_optional(form.content)
     form.make_optional(form.lower_image)
     if request.method == 'POST' and form.validate():
         if form.header_image.data and page.header_image != 'N/A':
-            #page.header_image = form.header_image.data
-            """
-            page.header_image = secure_filename(form.header_image.data.filename)
-            #save to app.config['UPLOADED_IMAGES_DEST']
-            form.header_image.data.save('asfas/images/' + page.header_image)
-            """
             header_image = request.files['header_image']
             page.header_image = secure_filename(form.header_image.data.filename)
             header_image.save(os.path.join(app.config['UPLOADED_IMAGES_DEST'], page.header_image))
-            """
-            header_image = images.save(request.files['header_image'])
-            #rec = Image(filename=header_image, user = page.id)
-            #rec.store()
-            """
+        if form.display_title.data and page.display_title != 'N/A':
+            page.display_title = form.display_title.data
         if form.content.data and page.content != 'N/A':
             page.content = form.content.data
         if form.lower_image.data and page.lower_image != 'N/A':

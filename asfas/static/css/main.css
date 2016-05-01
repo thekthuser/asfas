@@ -72,3 +72,11 @@ body {
     margin: auto;
     display: block;
 }
+
+#title {
+    font-family: 'Amatic SC', cursive;
+    text-align: left;
+    padding: .5em 15% .5em 15%;
+    font-weight: 700;
+    font-size: 3em;
+}

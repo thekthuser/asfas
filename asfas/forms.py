@@ -75,5 +75,6 @@ class EditPageForm(Form):
         field.validators.insert(0, validators.Optional())
 
     header_image = FileField('Header Image', [FileAllowed(images)])
+    display_title = StringField('Display Title', [validators.DataRequired()])
     content = StringField('Page Content', widget=TextArea())
     lower_image = FileField('Lower Image', [FileAllowed(images)])

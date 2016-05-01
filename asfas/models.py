@@ -43,12 +43,15 @@ class Page(db.Model):
     header_image = db.Column(db.String(64))
     content = db.Column(db.Text)
     lower_image = db.Column(db.String(64))
+    display_title = db.Column(db.String(64))
 
-    def __init__(self, title, header_image=None, content=None, lower_image=None):
+    def __init__(self, title, header_image=None, content=None, lower_image=None, 
+        display_title = None):
         self.title = title
         self.header_image = header_image
         self.content = content
         self.lower_image = lower_image
+        self.display_title = display_title
 
     def __repr__(self):
         return self.title
