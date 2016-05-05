@@ -40,6 +40,7 @@ body {
     position: relative;
     left: 100%;
     margin-left: -200%;
+    max-width: 300%;
 }
 
 #lower-image {
@@ -48,6 +49,14 @@ body {
     text-align: center;
     padding-top: 3em;
 }
+
+#lower-image img {
+    position: relative;
+    left: 100%;
+    margin-left: -200%;
+    max-width: 100%;
+}
+
 #main {
     border-bottom-width: 1em;
     border-style: solid;
